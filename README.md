@@ -11,3 +11,6 @@ Torque-aware Vision-Language-Action Models</h2>
 <sup>2</sup> Institute for AI Industry Research (AIR), Tsinghua University, <br>
 <sup>3</sup> Nanyang Technological University<br>
 <sub>(* indicates equal contribution)</sub><br>
+
+[**Project Page**](https://zzongzheng0918.github.io/Torque-Aware-VLA.github.io/) | [**arXiv**](https://arxiv.org/abs/2509.07962) | [**Code**](https://github.com/ZZongzheng0918/TA-VLA) 
+</div>
