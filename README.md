@@ -84,3 +84,20 @@ When using effort inputs, be sure to pass the corresponding `effort_history` par
 ## Deployment
 For data collection and model deployment, we use a modified version of the AgileX official example code.
 In addition to reading torque values from the ROS topic, this version maintains a historical torque buffer for policies that require past torque information.
+
+## Citation
+If you find this project useful, feel free to cite our work!
+<div style="display:flex;">
+<div>
+
+```bibtex
+@article{zhang2025ta,
+  title={TA-VLA: Elucidating the Design Space of Torque-aware Vision-Language-Action Models},
+  author={Zhang, Zongzheng and Xu, Haobo and Yang, Zhuo and Yue, Chenghao and Lin, Zehao and Gao, Huan-ang and Wang, Ziwei and Zhao, Hao},
+  journal={arXiv preprint arXiv:2509.07962},
+  year={2025}
+}
+```
+
+
+
