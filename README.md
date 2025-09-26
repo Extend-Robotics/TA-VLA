@@ -16,8 +16,8 @@ Torque-aware Vision-Language-Action Models</h2>
 </div>
 
 ## TA-VLA
-This repository provides the implementation of **TA-VLA: Elucidating the Design Space of Torque-aware Vision-Language-Action Models** on **openpi**.
-It is branched from the original repository at commit [cd82848](https://github.com/Physical-Intelligence/openpi/commit/cd82848a997b67ed96d1200637133a89b2a22aae).
+This repository provides the implementation of **TA-VLA: Elucidating the Design Space of Torque-aware Vision-Language-Action Models** on [**openpi**](https://github.com/Physical-Intelligence/openpi).
+It is branched from the original repository at commit `cd82848`.
 Please refer to the original repository for environment setup and training details.
 The following focuses only on the differences from the upstream repository.
 
@@ -60,8 +60,7 @@ The types are:
 
 - **EXPERT_FUT**  
   Not an input type per se, but predicts future effort along with actions.  
-  Corresponds to Sections 5 and 6 ( 
-$π_0$ + obj).
+  Corresponds to Sections 5 and 6 ($π_0$ + obj).
 
 - **EXPERT_HIS_C_FUT**  
   Inputs concatenated historical effort to the action expert and outputs future effort.  
@@ -76,6 +75,7 @@ Note: These torque-handling implementations have only been tested on $π_0$ and 
 ## Dataset
 As in the original openpi implementation, we use datasets in the standard **lerobot** format.
 The difference is that we expect an additional field `observation.effort` storing the per-frame joint torque, analogous to how `observation.state` stores per-frame joint angles.
+We provide a sample dataset for the button-pressing task [here](https://huggingface.co/datasets/destroy314/agilex_push_button).
 
 ## Training
 Refer to the example configurations provided in `src/openpi/training/config.py`.
