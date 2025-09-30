@@ -360,7 +360,12 @@ class Pi0(_model.BaseModel):
         else:
             v_t = self.action_out_proj(suffix_out[:, -self.action_horizon-1:-1])
 
-        return jnp.mean(jnp.square(v_t - u_t), axis=-1)
+        if self.effort_type in (EffortType.EXPERT_FUT, EffortType.EXPERT_HIS_C_FUT, EffortType.EXPERT_HIS_C_L_FUT):
+            action_loss = jnp.mean(jnp.square(v_t[..., :self.action_dim] - u_t[..., :self.action_dim]), axis=-1)
+            effort_loss = jnp.mean(jnp.square(v_t[..., self.action_dim:] - u_t[..., self.action_dim:]), axis=-1)
+            return action_loss + 0.1 * effort_loss
+        else:
+            return jnp.mean(jnp.square(v_t - u_t), axis=-1)
 
     @override
     def sample_actions(
