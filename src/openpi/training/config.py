@@ -346,10 +346,6 @@ class LeRobotTavlaDataConfig(DataConfigFactory):
     use_delta_joint_actions: bool = True
     # If provided, will be injected into the input data if the "prompt" key is not present.
     default_prompt: str | None = None
-    # Whether to randomly choose prompt in TASK_AUGMENTATION, otherwise use the first one.
-    prompt_augmentation: bool = True
-    # Probability replace the action and prompt with "stop", don't set when compute_norm_stats.
-    halt_injection_prob: float = 0.0
     # If true, will pad the dim of norm_stats to 32, so pi0 could compatible with pi0_fast's norm_stats.
     padding_stat: bool = False
 
@@ -396,9 +392,6 @@ class LeRobotTavlaDataConfig(DataConfigFactory):
             inputs=[
                 tavla_policy.TavlaInputs(
                     action_dim=model_config.action_dim,
-                    model_type=model_config.model_type,
-                    prompt_augmentation=self.prompt_augmentation,
-                    halt_injection_prob=self.halt_injection_prob,
                 )
             ],
             outputs=[tavla_policy.TavlaOutputs()],
