@@ -617,6 +617,8 @@ class TrainConfig:
             )
 
 
+EFFORT_STRIDE=4
+
 # Use `get_config` if you need to get a config by name in your code.
 _CONFIGS = [
     #
@@ -862,7 +864,7 @@ _CONFIGS = [
         model=pi0.Pi0Config(paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora", effort_type=EffortType.EXPERT_HIS_C_L_FUT),
         data=LeRobotTavlaDataConfig(
             repo_id="org/repo",
-            effort_history=tuple((4*i-36 for i in range(10))), # sample 10 frames in 2s
+            effort_history=tuple((EFFORT_STRIDE*i-(EFFORT_STRIDE*9) for i in range(10))),  # sample 10 frames with a stride of EFFORT_STRIDE
             default_prompt="do something",
 
             base_config=DataConfig(
