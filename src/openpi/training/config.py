@@ -396,9 +396,9 @@ class LeRobotTavlaDataConfig(DataConfigFactory):
             inputs=[
                 tavla_policy.TavlaInputs(
                     action_dim=model_config.action_dim,
-                    model_type=model_config.model_type,
-                    prompt_augmentation=self.prompt_augmentation,
-                    halt_injection_prob=self.halt_injection_prob,
+                    # model_type=model_config.model_type,
+                    # prompt_augmentation=self.prompt_augmentation,
+                    # halt_injection_prob=self.halt_injection_prob,
                 )
             ],
             outputs=[tavla_policy.TavlaOutputs()],
@@ -570,7 +570,7 @@ class TrainConfig:
     resume: bool = False
 
     # If true, will enable wandb logging.
-    wandb_enabled: bool = False
+    wandb_enabled: bool = True
 
     # Used to pass metadata to the policy server.
     policy_metadata: dict[str, Any] | None = None
@@ -859,7 +859,7 @@ _CONFIGS = [
     ),
     TrainConfig(
         name="pi0_lora_effort_history",
-        model=pi0.Pi0Config(paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora", effort_type=EffortType.EXPERT_HIS_C),
+        model=pi0.Pi0Config(paligemma_variant="gemma_2b_lora", action_expert_variant="gemma_300m_lora", effort_type=EffortType.EXPERT_HIS_C_L_FUT),
         data=LeRobotTavlaDataConfig(
             repo_id="org/repo",
             effort_history=tuple((4*i-36 for i in range(10))), # sample 10 frames in 2s

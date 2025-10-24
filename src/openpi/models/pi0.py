@@ -363,9 +363,11 @@ class Pi0(_model.BaseModel):
         if self.effort_type in (EffortType.EXPERT_FUT, EffortType.EXPERT_HIS_C_FUT, EffortType.EXPERT_HIS_C_L_FUT):
             action_loss = jnp.mean(jnp.square(v_t[..., :self.action_dim] - u_t[..., :self.action_dim]), axis=-1)
             effort_loss = jnp.mean(jnp.square(v_t[..., self.action_dim:] - u_t[..., self.action_dim:]), axis=-1)
-            return action_loss + 0.1 * effort_loss
+            return jnp.concatenate((action_loss,0.1*effort_loss))# action_loss + 0.1 * effort_loss
         else:
+            print("*******************")
             return jnp.mean(jnp.square(v_t - u_t), axis=-1)
+            
 
     @override
     def sample_actions(
@@ -420,7 +422,7 @@ class Pi0(_model.BaseModel):
             if self.effort_type != EffortType.EXPERT_HIS_C_L_FUT:
                 v_t = self.action_out_proj(suffix_out[:, -self.action_horizon:])
             else:
-                v_t = suffix_out[:, -self.action_horizon-1:-1]
+                v_t = self.action_out_proj(suffix_out[:, -self.action_horizon-1:-1])
 
             return x_t + dt * v_t, time + dt
 
